@@ -1,5 +1,5 @@
 function useKeyLog(handler) {
   const [keys, setKeys] = useState([]);
-  useDocumentEvent("keypress", e => setKeys([e.key, ...keys]));
+  useEvent("keypress", e => setKeys([e.key, ...keys]), document);
   return keys;
 }

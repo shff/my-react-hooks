@@ -8,7 +8,7 @@ function useStorage(key, initialValue) {
     localStorage.setItem(key, JSON.stringify(value));
   };
 
-  useWindowEvent("storage", e => {
+  useEvent("storage", e => {
     if (e.key === key) {
       setLocalValue(JSON.parse(localStorage.getItem(key)));
     }

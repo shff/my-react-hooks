@@ -1,5 +1,5 @@
 function useClickOutside(fn) {
   const ref = useRef(null);
-  useDocumentEvent("click", e => ref.current.contains(e.target) || fn());
+  useEvent("click", e => ref.current.contains(e.target) || fn(), document);
   return ref;
 }

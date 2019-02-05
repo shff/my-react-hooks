@@ -1,3 +1,3 @@
 function useKeyPress(handler) {
-  useDocumentEvent("keypress", handler);
+  useEvent("keypress", handler, document);
 }
