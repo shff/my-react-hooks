@@ -1,8 +1,8 @@
-function useInterval(callback, interval = 1000) {
-  const getCallback = useOnce(callback);
-
+function useInterval(cb, time = 1000) {
+  const ref = useRef();
   useEffect(() => {
-    let id = setInterval(() => getCallback()(), interval);
+    ref.current = cb;
+    const id = setInterval(() => ref.current(), time);
     return () => clearInterval(id);
-  }, [interval]);
+  }, [time]);
 }

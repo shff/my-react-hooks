@@ -1,10 +1,6 @@
 function useMedia(query) {
-  let [matches, setMatches] = useState(window.matchMedia(query).matches);
-  useEffect(() => {
-    const media = window.matchMedia(query);
-    const listener = () => setMatches(media.matches);
-    media.addListener(listener);
-    return () => media.removeListener(listener);
-  });
+  const media = window.matchMedia(query);
+  let [matches, setMatches] = useState(media.matches);
+  useEvent("resize", () => setMatches(media.matches));
   return matches;
 }
