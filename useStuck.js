@@ -1,13 +1,8 @@
-import { useRef, useEffect } from "react";
+import useStateListener from "./useStateListener";
 
-export default function useStuck(parent = ".wrapper") {
-  const ref = useRef();
-  useEffect(() => {
-    const wrapper = ref.current.closest(parent);
-    wrapper.addEventListener("scroll", () => {
-      ref.current.style.transform = `translate(0, ${wrapper.scrollTop}px)`;
-    });
-    () => wrapper.removeEventListener("scroll");
-  }, []);
-  return ref;
+export default function useStuck(ref, parent = ".wrapper") {
+  return useStateListener(
+    "scroll",
+    () => `translate(0, ${ref.current.closest(parent).scrollTop}px)`
+  ).state;
 };

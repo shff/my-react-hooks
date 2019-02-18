@@ -1,10 +1,10 @@
 import useStateListener from "./useStateListener";
 
 export default function useRouter() {
-  const [path, setPath] = useStateListener("popstate", () => location.pathname);
+  const { state, setter } = useStateListener("popstate", () => location.pathname);
   const push = path => {
     history.pushState(null, "", path);
-    setPath(path);
+    setter(path);
   };
-  return [path, push];
+  return [state, push];
 };

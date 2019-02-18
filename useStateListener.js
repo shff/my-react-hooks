@@ -9,5 +9,5 @@ export default function useStateListener(event, callback, source = window) {
       source.removeEventListener(event, handler);
     };
   }, [callback, event, source]);
-  return [state, setState];
-};
+  return { state, setter };
+}
