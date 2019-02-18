@@ -1,6 +1,13 @@
-function useBroadcast(channelName = "default") {
-  const [message, setMessage] = useState();
+import { useRef } from "react";
+import useStateListener from "./useStateListener";
+
+export default function useBroadcast(channelName = "default") {
   const channel = useRef(new BroadcastChannel(channelName));
-  useEvent("message", e => setMessage(JSON.parse(e.data)), channel.current);
-  return [message, msg => channel.current.postMessage(JSON.stringify(msg))];
-}
+  const postMessage = msg => channel.current.postMessage(JSON.stringify(msg));
+  const [message] = useStateListener(
+    "message",
+    e => JSON.parse(e.data),
+    channel.current
+  );
+  return [message, postMessage];
+};

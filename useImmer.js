@@ -1,7 +1,9 @@
+import { useReducer } from "react";
 import produce from "immer";
 
-function useImmutable(actions, initialState) {
-  const reducer = produce((state, { type, payload }) =>
-    actions[type](state)(payload));
-  return useReducer(reducer, initialState));
-}
+export default function useImmutable(actions, initialState) {
+  return useReducer(
+    produce((state, { type, payload }) => actions[type](state)(payload)),
+    initialState
+  );
+};

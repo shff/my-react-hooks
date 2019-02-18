@@ -1,7 +1,9 @@
-function useWindowSize() {
-  const getSize = () => ({ w: window.innerWidth, h: window.innerHeight });
+import useStateListener from "./useStateListener";
 
-  const [size, setSize] = useState(getSize);
-  useEvent("resize", () => setSize(getSize()));
+export default function useWindowSize() {
+  const [size] = useStateListener("resize", () => ({
+    w: innerWidth,
+    h: innerHeight
+  }));
   return size;
-}
+};

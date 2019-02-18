@@ -1,6 +1,7 @@
-function useMedia(query) {
-  const media = window.matchMedia(query);
-  let [matches, setMatches] = useState(media.matches);
-  useEvent("resize", () => setMatches(media.matches));
+import useStateListener from "./useStateListener";
+
+export default function useMedia(query) {
+  const media = matchMedia(query);
+  const [matches] = useStateListener("resize", () => media.matches);
   return matches;
-}
+};

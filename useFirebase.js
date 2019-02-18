@@ -1,6 +1,7 @@
-function useFirebase(project, path = "/") {
-  const [event, setEvent] = useState();
+import useStateListener from "./useStateListener";
+
+export default function useFirebase(project, path = "/") {
   const source = new EventSource(`https://${project}.firebaseio.com/${path}.json`);
-  useEvent("put", ({data}) => setEvent(JSON.parse(data).data), source);
+  const [event] = useStateListener("put", ({data}) => JSON.parse(data).data, source);
   return event;
 };

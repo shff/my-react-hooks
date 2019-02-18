@@ -1,4 +1,6 @@
-function useStuck(parent = ".wrapper") {
+import { useRef, useEffect } from "react";
+
+export default function useStuck(parent = ".wrapper") {
   const ref = useRef();
   useEffect(() => {
     const wrapper = ref.current.closest(parent);
@@ -8,4 +10,4 @@ function useStuck(parent = ".wrapper") {
     () => wrapper.removeEventListener("scroll");
   }, []);
   return ref;
-}
+};

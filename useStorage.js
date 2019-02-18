@@ -1,4 +1,4 @@
-function useStorage(key, initialValue) {
+export default function useStorage(key, initialValue) {
   const [localValue, setLocalValue] = useState(
     () => JSON.parse(localStorage.getItem(key)) || initialValue
   );
@@ -15,4 +15,4 @@ function useStorage(key, initialValue) {
   });
 
   return [localValue, setValue];
-}
+};

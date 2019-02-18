@@ -1,4 +1,6 @@
-function useGeolocation() {
+import { useState, useEffect } from "react";
+
+export default function useGeolocation() {
   const [location, setLocation] = useState({});
   const handler = ({coords}) => setLocation(coords);
   useEffect(() => {
@@ -7,4 +9,4 @@ function useGeolocation() {
     return () => navigator.geolocation.clearWatch(id);
   }, []);
   return location;
-}
+};

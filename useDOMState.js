@@ -1,5 +1,6 @@
-function useDOMState() {
-  const [readyState, setReadyState] = useState(document.readyState);
-  useEvent("DOMContentLoaded", () => setReadyState(document.readyState));
-  return readyState;
-}
+import useStateListener from "./useStateListener";
+
+export default function useDOMState() {
+  const [state] = useStateListener("DOMContentLoaded", () => document.readyState);
+  return state;
+};

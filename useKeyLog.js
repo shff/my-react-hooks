@@ -1,5 +1,10 @@
-function useKeyLog(handler) {
-  const [keys, setKeys] = useState([]);
-  useEvent("keypress", e => setKeys([e.key, ...keys]), document);
+import useStateListener from "./useStateListener";
+
+export default function useKeyLog(handler) {
+  const [keys] = useStateListener(
+    "keypress",
+    (e, state) => [e.key, ...state],
+    document
+  );
   return keys;
-}
+};

@@ -1,4 +1,6 @@
-function useDelay(interval = 1000) {
+import { useEffect, useState } from "react";
+
+export default function useDelay(interval = 1000) {
   const [done, setDone] = useState(false);
   useEffect(() => {
     let id = setTimeout(() => { setDone(true); }, interval);
