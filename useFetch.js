@@ -1,3 +1,6 @@
+//
+// Usage: const { response, data } = useFetch("/json.json");
+//
 import { useState, useEffect } from "react";
 
 export default function useFetch(url) {
